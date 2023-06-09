@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_multimedia_ui_percussive_clicks_002_99573.mp3-039c03386be9cafe077a83a89b932092.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_multimedia_ui_percussive_clicks_002_99573.mp3"
+dest_files=[ "res://.import/zapsplat_multimedia_ui_percussive_clicks_002_99573.mp3-039c03386be9cafe077a83a89b932092.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

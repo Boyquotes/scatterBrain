@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_001_60930.mp3-761c1532bdf72eee73c0436428a0237c.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_001_60930.mp3"
+dest_files=[ "res://.import/zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_001_60930.mp3-761c1532bdf72eee73c0436428a0237c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

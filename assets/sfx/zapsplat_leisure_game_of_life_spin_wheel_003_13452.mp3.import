@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_leisure_game_of_life_spin_wheel_003_13452.mp3-c758189f258f4c124e27ba537e820fa4.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_leisure_game_of_life_spin_wheel_003_13452.mp3"
+dest_files=[ "res://.import/zapsplat_leisure_game_of_life_spin_wheel_003_13452.mp3-c758189f258f4c124e27ba537e820fa4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

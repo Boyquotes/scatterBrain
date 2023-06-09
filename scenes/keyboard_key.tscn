@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/key.tres" type="StyleBox" id=1]
+[ext_resource path="res://scenes/keyboard_key.gd" type="Script" id=2]
+[ext_resource path="res://resources/keyboard_key_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/hd_icons/delete_left.png" type="Texture" id=4]
+
+[node name="key" type="Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 60, 140 )
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="letter" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Q"
+align = 1
+valign = 1
+
+[node name="delete_icon" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="icon" type="Sprite" parent="delete_icon"]
+visible = false
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 4 )
+
+[node name="button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[connection signal="button_down" from="button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

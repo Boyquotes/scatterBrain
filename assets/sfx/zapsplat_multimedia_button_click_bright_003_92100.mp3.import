@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_multimedia_button_click_bright_003_92100.mp3-4c69bed6b09a3e5a2d134491406383a5.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_multimedia_button_click_bright_003_92100.mp3"
+dest_files=[ "res://.import/zapsplat_multimedia_button_click_bright_003_92100.mp3-4c69bed6b09a3e5a2d134491406383a5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

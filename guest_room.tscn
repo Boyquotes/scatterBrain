@@ -1,0 +1,1078 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://guest_room.gd" type="Script" id=1]
+[ext_resource path="res://assets/hd_icons/palette.png" type="Texture" id=2]
+[ext_resource path="res://game_timer.gd" type="Script" id=4]
+[ext_resource path="res://scroll_view.gd" type="Script" id=5]
+[ext_resource path="res://resources/font_16.tres" type="DynamicFont" id=7]
+[ext_resource path="res://resources/timer_desc_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://resources/time_font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://resources/bordered_panel.tres" type="StyleBox" id=11]
+[ext_resource path="res://resources/category_font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://resources/borderless_panel.tres" type="StyleBox" id=13]
+[ext_resource path="res://assets/sfx/zapsplat_multimedia_ui_percussive_clicks_002_99573.mp3" type="AudioStream" id=14]
+[ext_resource path="res://assets/sfx/zapsplat_multimedia_button_click_bright_003_92100.mp3" type="AudioStream" id=15]
+[ext_resource path="res://assets/sfx/zapsplat_multimedia_alert_notification_glassy_high_pitched_short_positive_001_42348.mp3" type="AudioStream" id=17]
+[ext_resource path="res://assets/hd_icons/door.png" type="Texture" id=18]
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://assets/ReadexPro-VariableFont_HEXP,wght.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 58
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+border_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+
+[sub_resource type="DynamicFont" id=11]
+size = 46
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -14
+extra_spacing_bottom = -14
+font_data = SubResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.407843, 0.831373, 0.682353, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.823529, 0.729412, 0.454902, 1 )
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=18]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+border_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 10
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/ReadexPro-VariableFont_HEXP,wght.ttf"
+
+[sub_resource type="DynamicFont" id=16]
+size = 100
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 2 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+
+[node name="room" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="audio" type="Node" parent="."]
+
+[node name="button_push" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource( 15 )
+
+[node name="change_theme" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource( 14 )
+
+[node name="time_up" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource( 17 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="scroll_view" type="ScrollContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = -14.0
+margin_bottom = -24.0
+scroll_horizontal_enabled = false
+script = ExtResource( 5 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view"]
+margin_right = 1042.0
+margin_bottom = 1872.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 24
+
+[node name="room_info" type="Panel" parent="UI/scroll_view/vbc"]
+margin_right = 1042.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+mouse_filter = 1
+custom_styles/panel = ExtResource( 13 )
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/room_info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 7 )
+text = "DQ's room (Host)"
+align = 1
+valign = 1
+
+[node name="hbc" type="HBoxContainer" parent="UI/scroll_view/vbc"]
+margin_top = 94.0
+margin_right = 1042.0
+margin_bottom = 334.0
+rect_min_size = Vector2( 0, 240 )
+custom_constants/separation = 24
+alignment = 1
+
+[node name="letter" type="Panel" parent="UI/scroll_view/vbc/hbc"]
+margin_right = 407.0
+margin_bottom = 240.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 13 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/hbc/letter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/hbc/letter/vbc"]
+margin_right = 407.0
+margin_bottom = 129.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 10 )
+text = "L"
+align = 1
+valign = 1
+
+[node name="desc" type="Label" parent="UI/scroll_view/vbc/hbc/letter/vbc"]
+margin_top = 133.0
+margin_right = 407.0
+margin_bottom = 240.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 9 )
+text = "LETTER"
+align = 1
+valign = 1
+
+[node name="timer" type="Panel" parent="UI/scroll_view/vbc/hbc"]
+margin_left = 431.0
+margin_right = 1042.0
+margin_bottom = 240.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+custom_styles/panel = ExtResource( 13 )
+script = ExtResource( 4 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/hbc/timer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/hbc/timer/vbc"]
+margin_right = 611.0
+margin_bottom = 129.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 10 )
+text = "180"
+align = 1
+valign = 1
+
+[node name="desc" type="Label" parent="UI/scroll_view/vbc/hbc/timer/vbc"]
+margin_top = 133.0
+margin_right = 611.0
+margin_bottom = 240.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 9 )
+text = "REMAINING"
+align = 1
+valign = 1
+
+[node name="game_timer" type="Timer" parent="UI/scroll_view/vbc/hbc/timer"]
+one_shot = true
+
+[node name="categories" type="PanelContainer" parent="UI/scroll_view/vbc"]
+margin_top = 358.0
+margin_right = 1042.0
+margin_bottom = 1342.0
+mouse_filter = 1
+custom_styles/panel = ExtResource( 13 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/categories"]
+margin_left = 20.0
+margin_top = 24.0
+margin_right = 1022.0
+margin_bottom = 960.0
+custom_constants/separation = 24
+
+[node name="cat_1" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_right = 1002.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_1"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_1"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_2" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 80.0
+margin_right = 1002.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_2"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_2"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "METHODS OF TRAVEL"
+valign = 1
+autowrap = true
+
+[node name="cat_3" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 160.0
+margin_right = 1002.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_3"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_3"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_4" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 240.0
+margin_right = 1002.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_4"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_4"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_5" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 320.0
+margin_right = 1002.0
+margin_bottom = 376.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_5"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_5"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_6" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 400.0
+margin_right = 1002.0
+margin_bottom = 456.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_6"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_6"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_7" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 480.0
+margin_right = 1002.0
+margin_bottom = 536.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_7"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_7"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_8" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 560.0
+margin_right = 1002.0
+margin_bottom = 616.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_8"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_8"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_9" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 640.0
+margin_right = 1002.0
+margin_bottom = 696.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_9"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_9"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_10" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 720.0
+margin_right = 1002.0
+margin_bottom = 776.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_10"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_10"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_11" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 800.0
+margin_right = 1002.0
+margin_bottom = 856.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_11"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "11"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_11"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="cat_12" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 880.0
+margin_right = 1002.0
+margin_bottom = 936.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 22
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_12"]
+margin_right = 58.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 58, 0 )
+custom_fonts/font = ExtResource( 12 )
+text = "12"
+align = 1
+valign = 1
+
+[node name="text" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_12"]
+margin_left = 80.0
+margin_right = 1002.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 12 )
+text = "WAYS TO SAY HI AND BYE"
+valign = 1
+autowrap = true
+
+[node name="change_theme" type="Panel" parent="UI/scroll_view/vbc"]
+margin_top = 1366.0
+margin_right = 1042.0
+margin_bottom = 1546.0
+rect_min_size = Vector2( 0, 180 )
+mouse_filter = 1
+custom_styles/panel = ExtResource( 11 )
+
+[node name="hbc" type="HBoxContainer" parent="UI/scroll_view/vbc/change_theme"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="center" type="CenterContainer" parent="UI/scroll_view/vbc/change_theme/hbc"]
+margin_left = 228.0
+margin_right = 328.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 100, 0 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="icon" type="Control" parent="UI/scroll_view/vbc/change_theme/hbc/center"]
+margin_left = 50.0
+margin_top = 90.0
+margin_right = 50.0
+margin_bottom = 90.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="palette" type="Sprite" parent="UI/scroll_view/vbc/change_theme/hbc/center/icon"]
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 2 )
+
+[node name="desc" type="Label" parent="UI/scroll_view/vbc/change_theme/hbc"]
+margin_left = 348.0
+margin_right = 813.0
+margin_bottom = 180.0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+text = "CHANGE THEME"
+align = 1
+valign = 1
+
+[node name="theme_button" type="Button" parent="UI/scroll_view/vbc/change_theme"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="theme_tween" type="Tween" parent="UI/scroll_view/vbc/change_theme"]
+
+[node name="return_to_lobby" type="Panel" parent="UI/scroll_view/vbc"]
+margin_top = 1570.0
+margin_right = 1042.0
+margin_bottom = 1750.0
+rect_min_size = Vector2( 0, 180 )
+mouse_filter = 1
+custom_styles/panel = ExtResource( 11 )
+
+[node name="hbc" type="HBoxContainer" parent="UI/scroll_view/vbc/return_to_lobby"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="center" type="CenterContainer" parent="UI/scroll_view/vbc/return_to_lobby/hbc"]
+margin_left = 226.0
+margin_right = 326.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 100, 0 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="icon" type="Control" parent="UI/scroll_view/vbc/return_to_lobby/hbc/center"]
+margin_left = 50.0
+margin_top = 90.0
+margin_right = 50.0
+margin_bottom = 90.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="return" type="Sprite" parent="UI/scroll_view/vbc/return_to_lobby/hbc/center/icon"]
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 18 )
+
+[node name="desc" type="Label" parent="UI/scroll_view/vbc/return_to_lobby/hbc"]
+margin_left = 346.0
+margin_right = 816.0
+margin_bottom = 180.0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+text = "BACK TO LOBBY"
+align = 1
+valign = 1
+
+[node name="lobby_button" type="Button" parent="UI/scroll_view/vbc/return_to_lobby"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="particles_container" type="CenterContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="particle_pos" type="Control" parent="UI/particles_container"]
+margin_left = 540.0
+margin_top = 960.0
+margin_right = 540.0
+margin_bottom = 960.0
+mouse_filter = 2
+
+[node name="haze" type="ColorRect" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="dropdown" type="CanvasLayer" parent="UI"]
+offset = Vector2( 0, -1200 )
+transform = Transform2D( 1, 0, 0, 1, 0, -1200 )
+
+[node name="theme_selector" type="Panel" parent="UI/dropdown"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -350.0
+margin_top = -200.0
+margin_right = 350.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 300 )
+rect_pivot_offset = Vector2( 175, 100 )
+custom_styles/panel = SubResource( 12 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/dropdown/theme_selector"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="desc" type="Label" parent="UI/dropdown/theme_selector/vbc"]
+margin_top = 21.0
+margin_right = 700.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 11 )
+text = "SELECT THEME"
+align = 1
+valign = 1
+
+[node name="row_1" type="HBoxContainer" parent="UI/dropdown/theme_selector/vbc"]
+margin_top = 75.0
+margin_right = 700.0
+margin_bottom = 215.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="theme_1" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_1"]
+margin_left = 34.0
+margin_right = 174.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_1"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_1"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_2" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_1"]
+margin_left = 198.0
+margin_right = 338.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_2"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_2"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_3" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_1"]
+margin_left = 362.0
+margin_right = 502.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_3"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_3"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_4" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_1"]
+margin_left = 526.0
+margin_right = 666.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_4"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_1/theme_4"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="row_2" type="HBoxContainer" parent="UI/dropdown/theme_selector/vbc"]
+margin_top = 239.0
+margin_right = 700.0
+margin_bottom = 379.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="theme_1" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_2"]
+margin_left = 34.0
+margin_right = 174.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_1"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_1"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_2" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_2"]
+margin_left = 198.0
+margin_right = 338.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_2"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_2"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_3" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_2"]
+margin_left = 362.0
+margin_right = 502.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_3"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_3"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="theme_4" type="VBoxContainer" parent="UI/dropdown/theme_selector/vbc/row_2"]
+margin_left = 526.0
+margin_right = 666.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="font" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_4"]
+margin_right = 140.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
+
+[node name="fg" type="Panel" parent="UI/dropdown/theme_selector/vbc/row_2/theme_4"]
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 40, 20 )
+rect_pivot_offset = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="b_1" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 34.0
+margin_top = 75.0
+margin_right = 174.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_2" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 198.0
+margin_top = 75.0
+margin_right = 338.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_3" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 363.0
+margin_top = 75.0
+margin_right = 503.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_4" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 526.0
+margin_top = 75.0
+margin_right = 666.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_5" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 34.0
+margin_top = 238.0
+margin_right = 174.0
+margin_bottom = 378.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_6" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 198.0
+margin_top = 239.0
+margin_right = 338.0
+margin_bottom = 379.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_7" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 362.0
+margin_top = 239.0
+margin_right = 502.0
+margin_bottom = 379.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="b_8" type="Button" parent="UI/dropdown/theme_selector"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 526.0
+margin_top = 239.0
+margin_right = 666.0
+margin_bottom = 379.0
+rect_min_size = Vector2( 140, 140 )
+
+[node name="dropdown_tween" type="Tween" parent="UI/dropdown"]
+
+[node name="time_up_dropdown" type="CanvasLayer" parent="UI"]
+offset = Vector2( 0, -2400 )
+transform = Transform2D( 1, 0, 0, 1, 0, -2400 )
+
+[node name="panel" type="Panel" parent="UI/time_up_dropdown"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -350.0
+margin_top = -200.0
+margin_right = 350.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 300 )
+rect_pivot_offset = Vector2( 175, 100 )
+custom_styles/panel = SubResource( 18 )
+
+[node name="text" type="Label" parent="UI/time_up_dropdown/panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 350, 200 )
+custom_fonts/font = SubResource( 16 )
+text = "TIME'S UP!"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="UI/time_up_dropdown/panel/text"]
+playback_speed = 1.4
+anims/idle = SubResource( 17 )
+
+[node name="dropdown_tween" type="Tween" parent="UI/time_up_dropdown"]
+
+[node name="polling_update" type="Timer" parent="."]
+one_shot = true
+
+[node name="fade_out" type="Tween" parent="."]
+
+[connection signal="timeout" from="UI/scroll_view/vbc/hbc/timer/game_timer" to="." method="_on_game_timer_timeout"]
+[connection signal="button_down" from="UI/scroll_view/vbc/change_theme/theme_button" to="." method="_on_theme_button_button_down"]
+[connection signal="button_up" from="UI/scroll_view/vbc/change_theme/theme_button" to="." method="_on_theme_button_button_up"]
+[connection signal="pressed" from="UI/scroll_view/vbc/change_theme/theme_button" to="." method="_on_theme_button_pressed"]
+[connection signal="button_down" from="UI/scroll_view/vbc/return_to_lobby/lobby_button" to="." method="_on_lobby_button_button_down"]
+[connection signal="button_up" from="UI/scroll_view/vbc/return_to_lobby/lobby_button" to="." method="_on_lobby_button_button_up"]
+[connection signal="pressed" from="UI/scroll_view/vbc/return_to_lobby/lobby_button" to="." method="_on_lobby_button_pressed"]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_1" to="." method="_on_theme_selected" binds= [ 0 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_2" to="." method="_on_theme_selected" binds= [ 1 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_3" to="." method="_on_theme_selected" binds= [ 2 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_4" to="." method="_on_theme_selected" binds= [ 3 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_5" to="." method="_on_theme_selected" binds= [ 4 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_6" to="." method="_on_theme_selected" binds= [ 5 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_7" to="." method="_on_theme_selected" binds= [ 6 ]]
+[connection signal="pressed" from="UI/dropdown/theme_selector/b_8" to="." method="_on_theme_selected" binds= [ 7 ]]
+[connection signal="timeout" from="polling_update" to="." method="_on_polling_update_timeout"]

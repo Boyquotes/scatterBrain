@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/join_room_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://scenes/join_room.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/ReadexPro-VariableFont_HEXP,wght.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 2 )
+
+[node name="join_room" type="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -100.0
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 800, 200 )
+mouse_filter = 1
+size_flags_horizontal = 4
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="text" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "GORDON'S ROOM"
+align = 1
+valign = 1
+
+[node name="join_room" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[connection signal="button_down" from="join_room" to="." method="_on_join_room_button_down"]
+[connection signal="button_up" from="join_room" to="." method="_on_join_room_button_up"]
+[connection signal="pressed" from="join_room" to="." method="_on_join_room_pressed"]

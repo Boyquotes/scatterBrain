@@ -1,0 +1,344 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scroll_view.gd" type="Script" id=1]
+[ext_resource path="res://resources/font_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resources/borderless_panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://resources/bordered_panel.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/icons8-play-96.png" type="Texture" id=5]
+[ext_resource path="res://resources/category_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://room.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/ReadexPro-VariableFont_HEXP,wght.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 66
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -6
+extra_spacing_bottom = -22
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -4
+extra_spacing_bottom = -22
+font_data = SubResource( 2 )
+
+[node name="room" type="Node2D"]
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="scroll_view" type="ScrollContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_bottom = -10.0
+scroll_horizontal_enabled = false
+script = ExtResource( 1 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view"]
+margin_right = 392.0
+margin_bottom = 1147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+alignment = 1
+
+[node name="room_info_panel" type="Panel" parent="UI/scroll_view/vbc"]
+margin_right = 392.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="room_info" type="Label" parent="UI/scroll_view/vbc/room_info_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "DQ's room (Host)"
+align = 1
+valign = 1
+
+[node name="hbc" type="HBoxContainer" parent="UI/scroll_view/vbc"]
+margin_top = 40.0
+margin_right = 392.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 100 )
+custom_constants/separation = 10
+alignment = 1
+
+[node name="letter_panel" type="Panel" parent="UI/scroll_view/vbc/hbc"]
+margin_right = 106.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 4 )
+
+[node name="letter_vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/hbc/letter_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="letter" type="Label" parent="UI/scroll_view/vbc/hbc/letter_panel/letter_vbc"]
+margin_right = 106.0
+margin_bottom = 55.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "L"
+align = 1
+valign = 1
+
+[node name="letter_desc" type="Label" parent="UI/scroll_view/vbc/hbc/letter_panel/letter_vbc"]
+margin_top = 59.0
+margin_right = 106.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "LETTER"
+align = 1
+valign = 1
+
+[node name="timer_panel" type="Panel" parent="UI/scroll_view/vbc/hbc"]
+margin_left = 116.0
+margin_right = 275.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+custom_styles/panel = ExtResource( 4 )
+
+[node name="timer_vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/hbc/timer_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="time" type="Label" parent="UI/scroll_view/vbc/hbc/timer_panel/timer_vbc"]
+margin_right = 159.0
+margin_bottom = 54.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "180"
+align = 1
+valign = 1
+
+[node name="time_desc" type="Label" parent="UI/scroll_view/vbc/hbc/timer_panel/timer_vbc"]
+margin_top = 58.0
+margin_right = 159.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "REMAINING"
+align = 1
+valign = 1
+
+[node name="start_stop_panel" type="Panel" parent="UI/scroll_view/vbc/hbc"]
+margin_left = 285.0
+margin_right = 392.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 4 )
+
+[node name="start_stop_vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/hbc/start_stop_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="center" type="CenterContainer" parent="UI/scroll_view/vbc/hbc/start_stop_panel/start_stop_vbc"]
+margin_right = 107.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 54 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="icon" type="Control" parent="UI/scroll_view/vbc/hbc/start_stop_panel/start_stop_vbc/center"]
+margin_left = 53.0
+margin_top = 27.0
+margin_right = 53.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="play" type="Sprite" parent="UI/scroll_view/vbc/hbc/start_stop_panel/start_stop_vbc/center/icon"]
+modulate = Color( 0.960784, 0.737255, 0.8, 1 )
+position = Vector2( -3, 11 )
+scale = Vector2( 0.95, 0.95 )
+texture = ExtResource( 5 )
+
+[node name="desc" type="Label" parent="UI/scroll_view/vbc/hbc/start_stop_panel/start_stop_vbc"]
+margin_top = 58.0
+margin_right = 107.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "START"
+align = 1
+valign = 1
+
+[node name="categories" type="PanelContainer" parent="UI/scroll_view/vbc"]
+margin_top = 150.0
+margin_right = 392.0
+margin_bottom = 267.0
+custom_styles/panel = ExtResource( 3 )
+
+[node name="vbc" type="VBoxContainer" parent="UI/scroll_view/vbc/categories"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 382.0
+margin_bottom = 107.0
+custom_constants/separation = 8
+
+[node name="cat_1" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_right = 372.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 10
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_1"]
+margin_right = 20.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 20, 0 )
+custom_colors/font_color = Color( 0.960784, 0.737255, 0.8, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="cat" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_1"]
+margin_left = 30.0
+margin_right = 372.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "THINGS MADE OF GLASS"
+valign = 1
+autowrap = true
+
+[node name="cat_2" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 28.0
+margin_right = 372.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 10
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_2"]
+margin_top = 11.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 0 )
+custom_fonts/font = ExtResource( 6 )
+text = "12"
+align = 1
+valign = 1
+
+[node name="cat" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_2"]
+margin_left = 30.0
+margin_right = 372.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "FAMOUS SAYINGS THAT PEOPLE TEND TO SAY OFTEN"
+valign = 1
+autowrap = true
+
+[node name="cat_3" type="HBoxContainer" parent="UI/scroll_view/vbc/categories/vbc"]
+margin_top = 77.0
+margin_right = 372.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 0, 20 )
+custom_constants/separation = 10
+
+[node name="number" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_3"]
+margin_right = 20.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 20, 0 )
+custom_fonts/font = ExtResource( 6 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="cat" type="Label" parent="UI/scroll_view/vbc/categories/vbc/cat_3"]
+margin_left = 30.0
+margin_right = 372.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "LETHAL CANNON AMMO"
+valign = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="UI/scroll_view/vbc"]
+margin_top = 277.0
+margin_right = 392.0
+margin_bottom = 377.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="shuffle_list" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 387.0
+margin_right = 392.0
+margin_bottom = 487.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.905882, 0.894118, 0.596078, 1 )
+
+[node name="theme" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 497.0
+margin_right = 392.0
+margin_bottom = 597.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.596078, 0.65098, 0.905882, 1 )
+
+[node name="leave" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 607.0
+margin_right = 392.0
+margin_bottom = 707.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.905882, 0.596078, 0.886275, 1 )
+
+[node name="theme2" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 717.0
+margin_right = 392.0
+margin_bottom = 817.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.596078, 0.65098, 0.905882, 1 )
+
+[node name="leave2" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 827.0
+margin_right = 392.0
+margin_bottom = 927.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.905882, 0.596078, 0.886275, 1 )
+
+[node name="theme3" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 937.0
+margin_right = 392.0
+margin_bottom = 1037.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.596078, 0.65098, 0.905882, 1 )
+
+[node name="leave3" type="ColorRect" parent="UI/scroll_view/vbc"]
+margin_top = 1047.0
+margin_right = 392.0
+margin_bottom = 1147.0
+rect_min_size = Vector2( 0, 100 )
+color = Color( 0.905882, 0.596078, 0.886275, 1 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_multimedia_alert_notification_glassy_high_pitched_short_positive_001_42348.mp3-5957ff5a26b9210b3435075c360fe263.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_multimedia_alert_notification_glassy_high_pitched_short_positive_001_42348.mp3"
+dest_files=[ "res://.import/zapsplat_multimedia_alert_notification_glassy_high_pitched_short_positive_001_42348.mp3-5957ff5a26b9210b3435075c360fe263.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

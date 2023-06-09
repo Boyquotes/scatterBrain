@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_fantasy_magic_wand_ping_single_fairy_001_80468.mp3-ba68d9682cb60910cdf06ab3f9e02182.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_fantasy_magic_wand_ping_single_fairy_001_80468.mp3"
+dest_files=[ "res://.import/zapsplat_fantasy_magic_wand_ping_single_fairy_001_80468.mp3-ba68d9682cb60910cdf06ab3f9e02182.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
